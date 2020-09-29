@@ -2,21 +2,21 @@
   <div id="app">
     <b-navbar variant="light">
       <b-navbar-brand>
-        Takalog
+        <router-link to="/">Takalog</router-link>
       </b-navbar-brand>
       <b-navbar-nav>
-        <b-navbar-item class="mr-2"><router-link to="/">Home</router-link></b-navbar-item>
-        <b-navbar-item class="mr-2"><router-link to="/about">About</router-link></b-navbar-item>
-        <b-navbar-item class="mr-2"><router-link to="/articles">ブログ一覧</router-link></b-navbar-item>
+        <b-nav-item class="mr-2">
+          <router-link to="/about">About</router-link>
+        </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <b-container>
-      <router-view/>
+      <router-view />
     </b-container>
   </div>
 </template>
 
-<style>
+<style scoped>
 a {
   color: black;
 }

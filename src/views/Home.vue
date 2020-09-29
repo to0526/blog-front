@@ -1,18 +1,38 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1 class="mt-4">
+      ブログ記事一覧
+    </h1>
+    <div class="mb-4" v-for="article in articles" v-bind:key="article.id">
+      <b-card :title="article.title" :sub-title="article.created_at | moment('timezone', 'Asia/Tokyo', 'YYYY/MM/DD(ddd) HH:mm')">
+        <b-card-text>
+          {{article.body}}
+        </b-card-text>
+      </b-card>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      articles: []
+    }
+  },
+  methods: {
+    fetchArticles: function() {
+      fetch('http://localhost:3000/articles')
+        .then(response => response.json())
+        .then(data => this.articles = data)
+        .catch(error => alert(error))
+    }
+  },
+  created: function() {
+    this.fetchArticles()
   }
 }
 </script>
+
+<style>
+</style>

@@ -1,13 +1,11 @@
 <template>
   <div>
-    <h1 class="mt-4">
+    <h2 class="my-4">
       ブログ記事一覧
-    </h1>
+    </h2>
     <div class="mb-4" v-for="article in articles" v-bind:key="article.id">
       <b-card :title="article.title" :sub-title="article.created_at | moment('timezone', 'Asia/Tokyo', 'YYYY/MM/DD(ddd) HH:mm')">
-        <b-card-text>
-          {{article.body}}
-        </b-card-text>
+        <b-card-text> {{article.body}} </b-card-text>
       </b-card>
     </div>
   </div>

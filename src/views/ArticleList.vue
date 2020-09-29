@@ -3,13 +3,13 @@
     <h1>
       ブログ記事一覧
     </h1>
-    <ul v-for="article in articles" v-bind:key="article.id">
-      <li>
-        タイトル: {{article.title}}
-        本文: {{article.body}}
-        作成日時: {{article.created_at}}
-      </li>
-    </ul>
+    <div v-for="article in articles" v-bind:key="article.id">
+      <b-card :title="article.title" :sub-title="article.created_at">
+        <b-card-text>
+          {{article.body}}
+        </b-card-text>
+      </b-card>
+    </div>
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     <h1>
       ブログ記事一覧
     </h1>
-    <div v-for="article in articles" v-bind:key="article.id">
+    <div class="mb-4" v-for="article in articles" v-bind:key="article.id">
       <b-card :title="article.title" :sub-title="article.created_at | moment('timezone', 'Asia/Tokyo', 'YYYY/MM/DD(ddd) HH:mm')">
         <b-card-text>
           {{article.body}}

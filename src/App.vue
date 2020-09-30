@@ -13,7 +13,7 @@
             <router-link to="/sign_in">SignIn</router-link>
           </div>
           <div v-else>
-            SignOut
+            <span @click="signOut">SignOut</span>
           </div>
         </b-nav-item>
       </b-navbar-nav>
@@ -28,11 +28,15 @@
 import { mapState } from "vuex"
 
 export default {
+  methods: {
+    signOut() {
+      this.$store.commit("deleteAuthToken")
+    }
+  },
   computed: {
     ...mapState(["authToken"])
   }
 }
-
 </script>
 
 <style scoped>

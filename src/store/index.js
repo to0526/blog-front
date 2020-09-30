@@ -10,6 +10,9 @@ export default new Vuex.Store({
   mutations: {
     setAuthToken(state, token) {
       state.authToken = token
+    },
+    deleteAuthToken(state) {
+      state.authToken = ""
     }
   },
   actions: {

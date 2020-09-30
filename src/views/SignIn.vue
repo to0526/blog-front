@@ -36,7 +36,7 @@ export default {
         body: JSON.stringify({ user: { email: this.email, password: this.password }})
       })
         .then(response => response.json())
-        .then(data => console.log(data.token))
+        .then(data => this.$store.commit("setAuthToken", data.token))
         .catch(error => alert(error))
     }
   }

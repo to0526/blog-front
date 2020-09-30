@@ -25,6 +25,8 @@ export default {
   methods: {
     signOut() {
       this.$store.commit("deleteAuthToken")
+      alert("ログアウトしました")
+      this.$router.push("/articles")
     }
   },
   computed: {

@@ -30,7 +30,14 @@ export default {
   methods: {
     onSubmit: function(event) {
       event.preventDefault()
-      alert(this.email)
+      fetch("http://localhost:3000/sign_in", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: { email: this.email, password: this.password }})
+      })
+        .then(response => response.json())
+        .then(data => console.log(data.token))
+        .catch(error => alert(error))
     }
   }
 }

@@ -9,7 +9,12 @@
           <router-link to="/about">About</router-link>
         </b-nav-item>
         <b-nav-item class="mr-2">
-          <router-link to="/sign_in">SignIn</router-link>
+          <div v-if="authToken === ''">
+            <router-link to="/sign_in">SignIn</router-link>
+          </div>
+          <div v-else>
+            SignOut
+          </div>
         </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -18,6 +23,17 @@
     </b-container>
   </div>
 </template>
+
+<script>
+import { mapState } from "vuex"
+
+export default {
+  computed: {
+    ...mapState(["authToken"])
+  }
+}
+
+</script>
 
 <style scoped>
 a {

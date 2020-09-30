@@ -13,16 +13,19 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchAuthToken(store, payload) {
+    async fetchAuthToken(store, payload) {
       if(store.state.authToken !== "") return
-      fetch("http://localhost:3000/sign_in", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: payload
-      })
-        .then(response => response.json())
-        .then(data => store.commit("setAuthToken", data.token))
-        .catch(error => alert(error))
+
+      try {
+        const response = await fetch("http://localhost:3000/sign_in", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: payload
+        }).then(res => res.json())
+        store.commit("setAuthToken", response.token)
+      } catch {
+        alert("ログインに失敗しました")
+      }
     }
   },
   modules: {

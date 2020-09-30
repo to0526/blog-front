@@ -30,7 +30,8 @@ export default {
   methods: {
     onSubmit: function(event) {
       event.preventDefault()
-      this.$store.dispatch("fetchAuthToken", JSON.stringify({ user: { email: this.email, password: this.password }}))
+      const params = { user: { email: this.email, password: this.password }}
+      this.$store.dispatch("fetchAuthToken", JSON.stringify(params))
     }
   }
 }

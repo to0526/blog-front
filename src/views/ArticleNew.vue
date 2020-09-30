@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
   data() {
     return {
@@ -28,9 +30,23 @@ export default {
   methods: {
     onSubmit: function(event) {
       event.preventDefault()
-      console.log(this.title)
-      console.log(this.body)
+      const params = { article: { title: this.title, body: this.body }}
+      console.log(params)
+      fetch("http://localhost:3000/articles", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${this.authToken}`
+        },
+        body: JSON.stringify(params)
+      })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
     }
+  },
+  computed: {
+    ...mapState(["authToken"])
   }
 }
 </script>

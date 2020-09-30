@@ -1,10 +1,38 @@
 <template>
-  <h2 class="mt-4">
-    記事登録
-  </h2>
+  <div>
+    <h2 class="mt-4">
+      記事登録
+    </h2>
+    <b-form @submit="onSubmit">
+      <b-form-group id="title" label="Title" label-for="title">
+        <b-form-input id="title" v-model="title" type="text" required></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="body" label="Body" label-for="body">
+        <b-form-textarea id="body" v-model="body" required></b-form-textarea>
+      </b-form-group>
+
+      <b-button type="submit" variant="primary">Create</b-button>
+    </b-form>
+  </div>
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      title: "",
+      body: ""
+    }
+  },
+  methods: {
+    onSubmit: function(event) {
+      event.preventDefault()
+      console.log(this.title)
+      console.log(this.body)
+    }
+  }
+}
 </script>
 
 <style>

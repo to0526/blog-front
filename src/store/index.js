@@ -34,7 +34,8 @@ export default new Vuex.Store({
         })
         .then(data => {
           store.commit("setAuthToken", data.token)
-          router.push("/")
+          alert("ログインしました")
+          router.push("/articles")
         })
         .catch(error => alert(error))
     }

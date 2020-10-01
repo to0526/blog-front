@@ -31,7 +31,6 @@ export default {
     onSubmit: function(event) {
       event.preventDefault()
       const params = { article: { title: this.title, body: this.body }}
-      console.log(params)
       fetch("http://localhost:3000/articles", {
         method: "POST",
         headers: {
@@ -40,9 +39,14 @@ export default {
         },
         body: JSON.stringify(params)
       })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
+        .then(res => {
+          if(!res.ok) {
+            throw new Error(`HTTP status code ${res.status}(${res.statusText})`)
+          }
+          alert('created article')
+          this.$router.push("/articles")
+        })
+        .catch(error => alert(error))
     }
   },
   computed: {
